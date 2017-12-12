@@ -61,8 +61,8 @@ Kendi bünyesinde verilerinizi saklar ve istediğinizde bu verileri bilgisayarı
 
 Öncelikle bulut platform olarak kullanacağımız ThingSpeak [https://thingspeak.com] platformundan üyelik oluştururak giriş yapıyoruz.
 	
- ![](http://ismailresatakcan.com/IoT/TS1.png)
- Resim 1. Dashboard ekranı
+ ![Resim 1. Dashboard ekranı](http://ismailresatakcan.com/IoT/TS1.png)
+        Resim 1. Dashboard ekranı
 
  Resim 1 üzerindeki New Channel seçeneğine tıklayarak yeni bir proje oluşturuyoruz.
  ![](http://ismailresatakcan.com/IoT/TS2.png)
