@@ -2,6 +2,8 @@
 #define WIFI_SSID "Laks.js"
 #define WIFI_PASSWORD "vakumvakumvakum"
 WiFiClient client;
+const int prob= A0;
+int measurement_Total;
 
 void setup() {
   // put your setup code here, to run once:
@@ -20,7 +22,7 @@ void setup() {
 }
 
 void loop() {
- 
+ measurement_Total = analogRead(prob);
   }
  
-}
+  }
