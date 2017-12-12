@@ -34,13 +34,13 @@ Arduino ve nem ölçer sensör ile, toprağın nemini anlık ölçerek Thingspea
 
  Arduino kartlarının donanımında bir adet Atmel AVR mikrodenetleyici (ATmega328, ATmega2560, ATmega32u4 gibi) ve programlama ve diğer devrelere bağlantı için gerekli yan elemanlar bulunur. Her Arduino kartında en azından bir 5 voltluk regüle entegresi ve bir 16MHz kristal osilator (bazılarında seramik rezonatör) vardır. Arduino kartlarında programlama için harici bir programlayıcıya ihtiyaç duyulmaz, çünkü karttaki mikrodenetleyiciye önceden bir bootloader programı yazılıdır.
 
-### Arduino 'nun temel bileşenleri : 
+    ### Arduino 'nun temel bileşenleri : 
  
  Arduino geliştirme ortamı (IDE), Arduino bootloader (Optiboot), Arduino kütüphaneleri,	AVRDude (Arduino üzerindeki mikrodenetleyici programlayan yazılım) ve derleyiciden (AVR-GCC) oluşur.
  
  Arduino kütüphaneleri ile kolaylıkla programlama yapabilirsiniz. Analog ve digital sinyalleri alarak işleyebilirsiniz. Sensörlerden gelen sinyalleri kullanarak, çevresiyele etkileşim içerisinde olan robotlar ve sistemler tasarlayabilirsiniz. Tasarladığınız projeye özgü olarak dış dünyaya hareket, ses, ışık gibi tepkiler oluşturabilirsiniz. Bizde uygulamamızda toprak nem değerini bir sensör kullanarak bulut ortamına kaydettik.
 
-### 2.1.2 Toprak Nemi Algılama Sensörü:
+    ### 2.1.2 Toprak Nemi Algılama Sensörü:
 
  Toprak nem sensörü, toprağın içerisindeki nem miktarını veya ufak ölçekte bir sıvının seviyesini ölçmek için kullanabileceğiniz bir sensördür.[3]
 
@@ -48,15 +48,15 @@ Arduino ve nem ölçer sensör ile, toprağın nemini anlık ölçerek Thingspea
 
  Uygulamamızda, Arduino cihaza bağlı sensör ile bulut ortamına kaydetme işlemi yapıldı.
 
-### 2.1.3 Android Studio IDE:
+    ### 2.1.3 Android Studio IDE:
 
  Android Studio, Android uygulamalarının geliştirildiği, üst seviye özelliklere sahip ve Google tarafından da önerilen resmi programlama aracıdır.Android uygulamanın programlama dili, bu zamana kadar Java idi, ancak Google yeni bir değişikliğe giderek Android ana programlama dilini Kotlin diline çevirdi. Şu an her iki programlama dilinde de Android uygulama geliştirilebilmektedir.[4]
 
-### 2.1.4 Arduino IDE:
+    ### 2.1.4 Arduino IDE:
 
  Arduino IDE, arduino kitleri için geliştirdiği; komutların yazılmasına, derleme işleminin yapılmasına ve son olarakta derlenen kodları doğrudan (Bilgisayarın USB portuna bağlı olan) Arduino kite yüklenmesine olanak sağlayan yazılım geliştirme platformudur.[5]
 
-### 2.1.5 ThingSpeak[6]:
+    ### 2.1.5 ThingSpeak[6]:
 
  ThingSpeak IoT çözümleri için geliştirilmiş bulut tabanlı bir uygulamadır.Bu uygulamanın üreticisi MATLAB programlama dili ve IDE’si ile tanıdığımız Mathwork’s firmasıdır.
 
@@ -67,27 +67,31 @@ Kendi bünyesinde verilerinizi saklar ve istediğinizde bu verileri bilgisayarı
 
 ## 3-	Uygulama Adımları
 
-### 3.1 Bulut Katmanı[7]
+   ### 3.1 Bulut Katmanı[7]
 
 Öncelikle bulut platform olarak kullanacağımız ThingSpeak [https://thingspeak.com] platformundan üyelik oluştururak giriş yapıyoruz.
 	
  ![](http://ismailresatakcan.com/IoT/TS1.png)
-          ~~Resim 1. Dashboard ekranı~~
+          
+	~~Resim 1. Dashboard ekranı~~
 
  Resim 1 üzerindeki New Channel seçeneğine tıklayarak yeni bir proje oluşturuyoruz.
  
  ![](http://ismailresatakcan.com/IoT/TS2.png)
-           ~~Resim 2. Yeni Proje Oluşturma Ekranı~~
+        
+	~~Resim 2. Yeni Proje Oluşturma Ekranı~~
 
  Gerekli bilgileri girerek, projemizi oluşturuyoruz. Resim 2 deki Field’lar ile uygulamamızın bir çok parametreye göre veritabanına yazılmasına karar verebiliriz. Bizim sadece sonuç kısmı olacağından dolayı, Total ekranını oluşturuyoruz.
   
   ![](http://ismailresatakcan.com/IoT/TS3.png)
-           ~~Resim 3. Dashboard Ekranı~~
+      
+     ~~Resim 3. Dashboard Ekranı~~
 		
 Resim 3 üzerinden projenin özelliklerine girerek, Arduino veyahut başka bir platform ile paylaşacağımız özel anahtarları elde edeceğiz. 
  
   ![](http://ismailresatakcan.com/IoT/TS4.png)			
-           ~~Resim 4. Proje Özellikleri
+   
+   ~~Resim 4. Proje Özellikleri~~
 
  Resim 4 üzerinde yukarıda bulunan tab kısımların bizim diğer platformla paylaşmamızı sağlayacak olan API Keys kısmına girerek, bize ait olan Key kısmını bir yere not alacağız.
 Şimdilik bulut platform kısmında yapılacakları tamamladık. Arduino kısmına geçebiliriz.
@@ -97,16 +101,19 @@ Resim 3 üzerinden projenin özelliklerine girerek, Arduino veyahut başka bir p
 Öncelikle, Arduino IDE ve Arduino kartı ile bazı senkronizasyon ayarları yapmamız gerekiyor.
  
  ![](http://ismailresatakcan.com/IoT/A1.png)			 	
-        ~~Resim 5. Arduino Kart seçimi~~
+        
+	~~Resim 5. Arduino Kart seçimi~~
 
  Resim 5 kısmından Arduino IDE Araçlar sekmesinden ilgili Arduino kartımızı seçiyoruz. Bizim kartımız WeMos D1 mini kartı olduğundan dolayı ilgili kartı seçiyoruz.	 
  
  ![](http://ismailresatakcan.com/IoT/A2.png)	
-          ~~Resim 6. Library yükleme~~
+          
+	~~Resim 6. Library yükleme~~
 	  
  Resim 5 üzerinden Taslak sekmesine tıklayarak, Library yükle seçeneğine tıklıyoruz. Karşımıza Resim 6 geliyor. Buradan ESP8266 modulünü yükleyerek ilgili framework’ü kurmuş oluyoruz.
  
  ![](http://ismailresatakcan.com/IoT/A3.png)
+	
 	~~Resim 7. ESP8266 Modülü JSON Data yükleme~~
 	
  Resim 5 üzerinden Dosya kısmına tıklayarak Tercihler seçeneğine tıklıyoruz. Resim 7 karşımıza çıkmış oluyor. Ek Devre Kartları Yöneticisi URL’leri kısmına orada yazan JSON formatını ekliyoruz(Sadece link girilebilir).Böylelikle ESP8266 modulü ile ilgili kısımlar halledilmiş oluyor.
@@ -116,7 +123,8 @@ Resim 3 üzerinden projenin özelliklerine girerek, Arduino veyahut başka bir p
  Öncelikle malzemeler kısmında bahsetmiş olduğumuz, nem ölçer sensörünü Arduino kartına bağlıyoruz.	 
  
  ![](http://ismailresatakcan.com/IoT/A3.png)
-        ~~Resim 8. Toprak Nem Sensörü Arduino Bağlantısı[9]~~
+        
+	~~Resim 8. Toprak Nem Sensörü Arduino Bağlantısı[9]~~
 	
  Resim 8 de görüldüğü gibi toprak sensörünü bir ara bağlantı şemasıyla Arduino cihazımıza bağlıyoruz. Burada jumperlar kullanarak, nem sensörümüzü Arduino’ya bağlıyoruz. Ara bağlantı cihazının A0 portunu Arduino’muzun A0 portuna bağlıyoruz. Ara bağlantı cihazının GND çıkışını Arduino’muzun GND portuna bağlıyoruz. Ve ara bağlantı çıkışının VCC çıkışını Arduino cihazımızın 5V portuna bağlıyoruz. 
  
@@ -129,26 +137,30 @@ Resim 3 üzerinden projenin özelliklerine girerek, Arduino veyahut başka bir p
 A0 portunun verdiği değerleri dinledikten sonra, ilgili sonucu Thingspeak platformuna ekleme kısmını kodluyoruz. Tabiki bunu yapmadan önce cihazımızın, internete bağlanabilmesi için, Wifi ayarlarını yapıyoruz(ESP8266 modülü). İnternete bağlandıktan sonra, bulut platformuna verilerimizi yazabiliriz.
  
  ![](http://ismailresatakcan.com/IoT/TS5.png)
-      ~~Resim 8. ThingSpeak’ de değerlerin görülmesi~~
+      
+    ~~Resim 8. ThingSpeak’ de değerlerin görülmesi~~
       
  Resim 8 de görüldüğü gibi değerlerimizi bulut platformunda görüyoruz. Bu kısımdan sonra, bulut platformu ile bağlantı kuracak Android mobil uygulama kısmına geçebiliriz.
 
 ### 3.3 Android Katmanı
  
  ![](http://ismailresatakcan.com/IoT/TS6.png)
-      ~~Resim 9. API paylaşım kısmı~~
+     
+    ~~Resim 9. API paylaşım kısmı~~
 
  	Resim 4 üzerinden API Keys kısmına girdikten sonra Resim 9’daki bizim uygulamamızın paylaşmış olduğu API Keyler önümüze çıkıyor. Bu bağlantılar içerisinde, JSON data’lar paylaşılmış durumdadır.  
  
  ![](http://ismailresatakcan.com/IoT/TS7.png)
-	~~Resim 10. JSON Data~~
+
+    ~~Resim 10. JSON Data~~
 	
  Resim 9’daki API’leri GET komutu ile açtığımızda Resim 10’deki JSON data karşımıza geliyor.
 
  Ve Android programlama ile ilgili sonuçları çekerek, uygulamamızı eş zamanlı bir şekilde tasarlamış oluyoruz. Android ve Arduino kodlarına ulaşmak için . (https://github.com/umut47/IoT) Linkinden kodlara ulaşıp kendi bilgisayarınızda deneyebilirsiniz.
 
 ![](http://ismailresatakcan.com/IoT/AN1.png)
-       ~~Resim 11. Projenin Android kısımda görülmesi~~
+     
+   ~~Resim 11. Projenin Android kısımda görülmesi~~
 
 ## 4. Kaynakça
 
