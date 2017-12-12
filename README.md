@@ -1,4 +1,6 @@
-                             
+##Özet
+
+Arduino ve nem ölçer sensör ile, toprağın nemini anlık ölçerek Thingspeak platformuna yazan uygulamamız ; Thingspeak API'leri üzerinden eş zamanlı olarak mobil uygulamaya aktardığı IOT projesidir.
 			     
 ## 1-	Uygulamanın Tanımı
 
@@ -61,21 +63,94 @@ Kendi bünyesinde verilerinizi saklar ve istediğinizde bu verileri bilgisayarı
 
 Öncelikle bulut platform olarak kullanacağımız ThingSpeak [https://thingspeak.com] platformundan üyelik oluştururak giriş yapıyoruz.
 	
- ![Resim 1. Dashboard ekranı](http://ismailresatakcan.com/IoT/TS1.png)
-        Resim 1. Dashboard ekranı
+ ![](http://ismailresatakcan.com/IoT/TS1.png)
+          ~~Resim 1. Dashboard ekranı~~
 
  Resim 1 üzerindeki New Channel seçeneğine tıklayarak yeni bir proje oluşturuyoruz.
- ![](http://ismailresatakcan.com/IoT/TS2.png)
  
- Resim 2. Yeni Proje Oluşturma Ekranı
+ ![](http://ismailresatakcan.com/IoT/TS2.png)
+           ~~Resim 2. Yeni Proje Oluşturma Ekranı~~
 
  Gerekli bilgileri girerek, projemizi oluşturuyoruz. Resim 2 deki Field’lar ile uygulamamızın bir çok parametreye göre veritabanına yazılmasına karar verebiliriz. Bizim sadece sonuç kısmı olacağından dolayı, Total ekranını oluşturuyoruz.
+  
   ![](http://ismailresatakcan.com/IoT/TS3.png)
- Resim 3. Dashboard Ekranı
+           ~~Resim 3. Dashboard Ekranı~~
 		
 Resim 3 üzerinden projenin özelliklerine girerek, Arduino veyahut başka bir platform ile paylaşacağımız özel anahtarları elde edeceğiz. 
- ![](http://ismailresatakcan.com/IoT/TS4.png)			
-Resim 4. Proje Özellikleri
+ 
+  ![](http://ismailresatakcan.com/IoT/TS4.png)			
+           ~~Resim 4. Proje Özellikleri
 
  Resim 4 üzerinde yukarıda bulunan tab kısımların bizim diğer platformla paylaşmamızı sağlayacak olan API Keys kısmına girerek, bize ait olan Key kısmını bir yere not alacağız.
 Şimdilik bulut platform kısmında yapılacakları tamamladık. Arduino kısmına geçebiliriz.
+
+## 3.2 Arduino Katmanı[8]
+
+Öncelikle, Arduino IDE ve Arduino kartı ile bazı senkronizasyon ayarları yapmamız gerekiyor.
+ 
+ ![](http://ismailresatakcan.com/IoT/A1.png)			 	
+        ~~Resim 5. Arduino Kart seçimi~~
+
+ Resim 5 kısmından Arduino IDE Araçlar sekmesinden ilgili Arduino kartımızı seçiyoruz. Bizim kartımız WeMos D1 mini kartı olduğundan dolayı ilgili kartı seçiyoruz.	 
+ 
+ ![](http://ismailresatakcan.com/IoT/A2.png)	
+          ~~Resim 6. Library yükleme~~
+	  
+ Resim 5 üzerinden Taslak sekmesine tıklayarak, Library yükle seçeneğine tıklıyoruz. Karşımıza Resim 6 geliyor. Buradan ESP8266 modulünü yükleyerek ilgili framework’ü kurmuş oluyoruz.
+ 
+ ![](http://ismailresatakcan.com/IoT/A3.png)
+	~~Resim 7. ESP8266 Modülü JSON Data yükleme~~
+	
+ Resim 5 üzerinden Dosya kısmına tıklayarak Tercihler seçeneğine tıklıyoruz. Resim 7 karşımıza çıkmış oluyor. Ek Devre Kartları Yöneticisi URL’leri kısmına orada yazan JSON formatını ekliyoruz(Sadece link girilebilir).Böylelikle ESP8266 modulü ile ilgili kısımlar halledilmiş oluyor.
+
+ Şimdi kodlamaya başlayabiliriz.
+
+ Öncelikle malzemeler kısmında bahsetmiş olduğumuz, nem ölçer sensörünü Arduino kartına bağlıyoruz.	 
+ 
+ ![](http://ismailresatakcan.com/IoT/A3.png)
+        ~~Resim 8. Toprak Nem Sensörü Arduino Bağlantısı[9]~~
+	
+ Resim 8 de görüldüğü gibi toprak sensörünü bir ara bağlantı şemasıyla Arduino cihazımıza bağlıyoruz. Burada jumperlar kullanarak, nem sensörümüzü Arduino’ya bağlıyoruz. Ara bağlantı cihazının A0 portunu Arduino’muzun A0 portuna bağlıyoruz. Ara bağlantı cihazının GND çıkışını Arduino’muzun GND portuna bağlıyoruz. Ve ara bağlantı çıkışının VCC çıkışını Arduino cihazımızın 5V portuna bağlıyoruz. 
+ 
+ Bu işlemleri yaptıktan sonra, A0 portuna çıkış verecek olan toprak sensörünü Arduino kodları ile dinlemeye başlıyoruz.
+ 
+ Pseüdo Code:
+ Sonuç = dinle(A0) ;
+
+ Not. Orijinal kod burada paylaşılmayacaktır.Kodlarımızı açık kaynak yönetim aracı ve web sitesi olan GitHub.com üzerinden paylaştık. (https://github.com/umut47/IoT) Linkinden kodlara ulaşıp kendi bilgisayarınızda deneyebilirsiniz.
+A0 portunun verdiği değerleri dinledikten sonra, ilgili sonucu Thingspeak platformuna ekleme kısmını kodluyoruz. Tabiki bunu yapmadan önce cihazımızın, internete bağlanabilmesi için, Wifi ayarlarını yapıyoruz(ESP8266 modülü). İnternete bağlandıktan sonra, bulut platformuna verilerimizi yazabiliriz.
+ 
+ ![](http://ismailresatakcan.com/IoT/TS5.png)
+      ~~Resim 8. ThingSpeak’ de değerlerin görülmesi~~
+      
+ Resim 8 de görüldüğü gibi değerlerimizi bulut platformunda görüyoruz. Bu kısımdan sonra, bulut platformu ile bağlantı kuracak Android mobil uygulama kısmına geçebiliriz.
+
+# 3.3 Android Katmanı
+ 
+ ![](http://ismailresatakcan.com/IoT/TS6.png)
+      ~~Resim 9. API paylaşım kısmı~~
+
+ 	Resim 4 üzerinden API Keys kısmına girdikten sonra Resim 9’daki bizim uygulamamızın paylaşmış olduğu API Keyler önümüze çıkıyor. Bu bağlantılar içerisinde, JSON data’lar paylaşılmış durumdadır.  
+ 
+ ![](http://ismailresatakcan.com/IoT/TS7.png)
+	~~Resim 10. JSON Data~~
+	
+ Resim 9’daki API’leri GET komutu ile açtığımızda Resim 10’deki JSON data karşımıza geliyor.
+
+ Ve Android programlama ile ilgili sonuçları çekerek, uygulamamızı eş zamanlı bir şekilde tasarlamış oluyoruz. Android ve Arduino kodlarına ulaşmak için . (https://github.com/umut47/IoT) Linkinden kodlara ulaşıp kendi bilgisayarınızda deneyebilirsiniz.
+
+![](http://ismailresatakcan.com/IoT/AN1.png)
+       ~~Resim 11. Projenin Android kısımda görülmesi~~
+
+4. Kaynakça
+
+[1] akademikpersonel.kocaeli.edu.tr/bpekey/bildiri/bpekey05.10.2015_20.23.01bildiri.pdf
+[2] https://www.arduino.cc/en/Guide/Troubleshooting#upload
+[3] https://medium.com/@ibrahimirdem/toprak-nem-sensörü-ve-arduino-a9ebe8ccc203
+[4] https://developer.android.com/studio/index.html
+[5] https://www.arduino.cc/en/main/software
+[6] https://www.mathworks.com/help/thingspeak/getting-started-with-thingspeak.html
+[7] https://www.mathworks.com/help/thingspeak/collect-data-in-a-new-channel.html
+[8] http://www.elektrobot.net/arduino-ile-esp8266-kullanimi-ve-web-server/
+[9] https://www.youtube.com/watch?v=Nk80L7zp5_4&t=164s
+
