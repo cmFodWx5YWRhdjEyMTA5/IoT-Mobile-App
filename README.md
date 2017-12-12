@@ -28,19 +28,20 @@ Arduino ve nem ölçer sensör ile, toprağın nemini anlık ölçerek Thingspea
 -	Arduino IDE
 -	Thingspeak
      
-     ### 2.1 Kullanılan Teknolojilere Yönelik Teknik Bilgiler:
-     ### 2.1.1 Arduino[2]:
+### 2.1 Kullanılan Teknolojilere Yönelik Teknik Bilgiler:
+### 2.1.1 Arduino[2]:
+ 
  Arduino bir G/Ç kartı ve Processing/Wiring dilinin bir uygulamasını içeren geliştirme ortamından oluşan bir fiziksel programlama platformudur.
 
  Arduino kartlarının donanımında bir adet Atmel AVR mikrodenetleyici (ATmega328, ATmega2560, ATmega32u4 gibi) ve programlama ve diğer devrelere bağlantı için gerekli yan elemanlar bulunur. Her Arduino kartında en azından bir 5 voltluk regüle entegresi ve bir 16MHz kristal osilator (bazılarında seramik rezonatör) vardır. Arduino kartlarında programlama için harici bir programlayıcıya ihtiyaç duyulmaz, çünkü karttaki mikrodenetleyiciye önceden bir bootloader programı yazılıdır.
 
-    ### Arduino 'nun temel bileşenleri : 
+### Arduino 'nun temel bileşenleri : 
  
  Arduino geliştirme ortamı (IDE), Arduino bootloader (Optiboot), Arduino kütüphaneleri,	AVRDude (Arduino üzerindeki mikrodenetleyici programlayan yazılım) ve derleyiciden (AVR-GCC) oluşur.
  
  Arduino kütüphaneleri ile kolaylıkla programlama yapabilirsiniz. Analog ve digital sinyalleri alarak işleyebilirsiniz. Sensörlerden gelen sinyalleri kullanarak, çevresiyele etkileşim içerisinde olan robotlar ve sistemler tasarlayabilirsiniz. Tasarladığınız projeye özgü olarak dış dünyaya hareket, ses, ışık gibi tepkiler oluşturabilirsiniz. Bizde uygulamamızda toprak nem değerini bir sensör kullanarak bulut ortamına kaydettik.
 
-    ### 2.1.2 Toprak Nemi Algılama Sensörü:
+### 2.1.2 Toprak Nemi Algılama Sensörü:
 
  Toprak nem sensörü, toprağın içerisindeki nem miktarını veya ufak ölçekte bir sıvının seviyesini ölçmek için kullanabileceğiniz bir sensördür.[3]
 
@@ -48,15 +49,15 @@ Arduino ve nem ölçer sensör ile, toprağın nemini anlık ölçerek Thingspea
 
  Uygulamamızda, Arduino cihaza bağlı sensör ile bulut ortamına kaydetme işlemi yapıldı.
 
-    ### 2.1.3 Android Studio IDE:
+### 2.1.3 Android Studio IDE:
 
  Android Studio, Android uygulamalarının geliştirildiği, üst seviye özelliklere sahip ve Google tarafından da önerilen resmi programlama aracıdır.Android uygulamanın programlama dili, bu zamana kadar Java idi, ancak Google yeni bir değişikliğe giderek Android ana programlama dilini Kotlin diline çevirdi. Şu an her iki programlama dilinde de Android uygulama geliştirilebilmektedir.[4]
 
-    ### 2.1.4 Arduino IDE:
+### 2.1.4 Arduino IDE:
 
  Arduino IDE, arduino kitleri için geliştirdiği; komutların yazılmasına, derleme işleminin yapılmasına ve son olarakta derlenen kodları doğrudan (Bilgisayarın USB portuna bağlı olan) Arduino kite yüklenmesine olanak sağlayan yazılım geliştirme platformudur.[5]
 
-    ### 2.1.5 ThingSpeak[6]:
+### 2.1.5 ThingSpeak[6]:
 
  ThingSpeak IoT çözümleri için geliştirilmiş bulut tabanlı bir uygulamadır.Bu uygulamanın üreticisi MATLAB programlama dili ve IDE’si ile tanıdığımız Mathwork’s firmasıdır.
 
@@ -67,7 +68,7 @@ Kendi bünyesinde verilerinizi saklar ve istediğinizde bu verileri bilgisayarı
 
 ## 3-	Uygulama Adımları
 
-   ### 3.1 Bulut Katmanı[7]
+### 3.1 Bulut Katmanı[7]
 
 Öncelikle bulut platform olarak kullanacağımız ThingSpeak [https://thingspeak.com] platformundan üyelik oluştururak giriş yapıyoruz.
 	
