@@ -1,6 +1,13 @@
-##Özet
+# Özet
 
 Arduino ve nem ölçer sensör ile, toprağın nemini anlık ölçerek Thingspeak platformuna yazan uygulamamız ; Thingspeak API'leri üzerinden eş zamanlı olarak mobil uygulamaya aktardığı IOT projesidir.
+
+## Konu Başlıkları
+1- Uygulamanın Tanımı
+
+2- Ekipman Listesi ve Kullanılan Teknolojiler
+
+3- Uygulama Adımları
 			     
 ## 1-	Uygulamanın Tanımı
 
@@ -21,34 +28,35 @@ Arduino ve nem ölçer sensör ile, toprağın nemini anlık ölçerek Thingspea
 -	Arduino IDE
 -	Thingspeak
      
-     # 2.1 Kullanılan Teknolojilere Yönelik Teknik Bilgiler:
-     # 2.1.1 Arduino:
+     ### 2.1 Kullanılan Teknolojilere Yönelik Teknik Bilgiler:
+     ### 2.1.1 Arduino[2]:
  Arduino bir G/Ç kartı ve Processing/Wiring dilinin bir uygulamasını içeren geliştirme ortamından oluşan bir fiziksel programlama platformudur.
 
  Arduino kartlarının donanımında bir adet Atmel AVR mikrodenetleyici (ATmega328, ATmega2560, ATmega32u4 gibi) ve programlama ve diğer devrelere bağlantı için gerekli yan elemanlar bulunur. Her Arduino kartında en azından bir 5 voltluk regüle entegresi ve bir 16MHz kristal osilator (bazılarında seramik rezonatör) vardır. Arduino kartlarında programlama için harici bir programlayıcıya ihtiyaç duyulmaz, çünkü karttaki mikrodenetleyiciye önceden bir bootloader programı yazılıdır.
 
-# Arduino 'nun temel bileşenleri : 
+### Arduino 'nun temel bileşenleri : 
+ 
  Arduino geliştirme ortamı (IDE), Arduino bootloader (Optiboot), Arduino kütüphaneleri,	AVRDude (Arduino üzerindeki mikrodenetleyici programlayan yazılım) ve derleyiciden (AVR-GCC) oluşur.
  
  Arduino kütüphaneleri ile kolaylıkla programlama yapabilirsiniz. Analog ve digital sinyalleri alarak işleyebilirsiniz. Sensörlerden gelen sinyalleri kullanarak, çevresiyele etkileşim içerisinde olan robotlar ve sistemler tasarlayabilirsiniz. Tasarladığınız projeye özgü olarak dış dünyaya hareket, ses, ışık gibi tepkiler oluşturabilirsiniz. Bizde uygulamamızda toprak nem değerini bir sensör kullanarak bulut ortamına kaydettik.
 
-# 2.1.2 Toprak Nemi Algılama Sensörü:
+### 2.1.2 Toprak Nemi Algılama Sensörü:
 
- Toprak nem sensörü, toprağın içerisindeki nem miktarını veya ufak ölçekte bir sıvının seviyesini ölçmek için kullanabileceğiniz bir sensördür.
+ Toprak nem sensörü, toprağın içerisindeki nem miktarını veya ufak ölçekte bir sıvının seviyesini ölçmek için kullanabileceğiniz bir sensördür.[3]
 
  Nem ölçer problar ölçüm yapılacak ortama batırılarak kullanılır. Toprağın veya içine batırılan sıvının meydana getirdiği dirençten dolayı, prob uçları arasında bir gerilim farkı oluşur. Bu gerilim farkının büyüklüğüne göre de nem miktarı ölçülebilir. Topraktaki nem oranı arttıkça iletkenliği de artmaktadır. Kart üzerinde yer alan trimpot sayesinde hassasiyet ayarı yapılabilmektedir.
 
  Uygulamamızda, Arduino cihaza bağlı sensör ile bulut ortamına kaydetme işlemi yapıldı.
 
-# 2.1.3 Android Studio IDE:
+### 2.1.3 Android Studio IDE:
 
- Android Studio, Android uygulamalarının geliştirildiği, üst seviye özelliklere sahip ve Google tarafından da önerilen resmi programlama aracıdır.Android uygulamanın programlama dili, bu zamana kadar Java idi, ancak Google yeni bir değişikliğe giderek Android ana programlama dilini Kotlin diline çevirdi. Şu an her iki programlama dilinde de Android uygulama geliştirilebilmektedir.
+ Android Studio, Android uygulamalarının geliştirildiği, üst seviye özelliklere sahip ve Google tarafından da önerilen resmi programlama aracıdır.Android uygulamanın programlama dili, bu zamana kadar Java idi, ancak Google yeni bir değişikliğe giderek Android ana programlama dilini Kotlin diline çevirdi. Şu an her iki programlama dilinde de Android uygulama geliştirilebilmektedir.[4]
 
-# 2.1.4 Arduino IDE:
+### 2.1.4 Arduino IDE:
 
- Arduino IDE, arduino kitleri için geliştirdiği; komutların yazılmasına, derleme işleminin yapılmasına ve son olarakta derlenen kodları doğrudan (Bilgisayarın USB portuna bağlı olan) Arduino kite yüklenmesine olanak sağlayan yazılım geliştirme platformudur.
+ Arduino IDE, arduino kitleri için geliştirdiği; komutların yazılmasına, derleme işleminin yapılmasına ve son olarakta derlenen kodları doğrudan (Bilgisayarın USB portuna bağlı olan) Arduino kite yüklenmesine olanak sağlayan yazılım geliştirme platformudur.[5]
 
-# 2.1.5 ThingSpeak:
+### 2.1.5 ThingSpeak[6]:
 
  ThingSpeak IoT çözümleri için geliştirilmiş bulut tabanlı bir uygulamadır.Bu uygulamanın üreticisi MATLAB programlama dili ve IDE’si ile tanıdığımız Mathwork’s firmasıdır.
 
@@ -59,7 +67,7 @@ Kendi bünyesinde verilerinizi saklar ve istediğinizde bu verileri bilgisayarı
 
 ## 3-	Uygulama Adımları
 
-3.1 Bulut Katmanı
+### 3.1 Bulut Katmanı[7]
 
 Öncelikle bulut platform olarak kullanacağımız ThingSpeak [https://thingspeak.com] platformundan üyelik oluştururak giriş yapıyoruz.
 	
@@ -84,7 +92,7 @@ Resim 3 üzerinden projenin özelliklerine girerek, Arduino veyahut başka bir p
  Resim 4 üzerinde yukarıda bulunan tab kısımların bizim diğer platformla paylaşmamızı sağlayacak olan API Keys kısmına girerek, bize ait olan Key kısmını bir yere not alacağız.
 Şimdilik bulut platform kısmında yapılacakları tamamladık. Arduino kısmına geçebiliriz.
 
-## 3.2 Arduino Katmanı[8]
+### 3.2 Arduino Katmanı[8]
 
 Öncelikle, Arduino IDE ve Arduino kartı ile bazı senkronizasyon ayarları yapmamız gerekiyor.
  
@@ -125,7 +133,7 @@ A0 portunun verdiği değerleri dinledikten sonra, ilgili sonucu Thingspeak plat
       
  Resim 8 de görüldüğü gibi değerlerimizi bulut platformunda görüyoruz. Bu kısımdan sonra, bulut platformu ile bağlantı kuracak Android mobil uygulama kısmına geçebiliriz.
 
-# 3.3 Android Katmanı
+### 3.3 Android Katmanı
  
  ![](http://ismailresatakcan.com/IoT/TS6.png)
       ~~Resim 9. API paylaşım kısmı~~
@@ -142,15 +150,24 @@ A0 portunun verdiği değerleri dinledikten sonra, ilgili sonucu Thingspeak plat
 ![](http://ismailresatakcan.com/IoT/AN1.png)
        ~~Resim 11. Projenin Android kısımda görülmesi~~
 
-4. Kaynakça
+## 4. Kaynakça
 
-[1] akademikpersonel.kocaeli.edu.tr/bpekey/bildiri/bpekey05.10.2015_20.23.01bildiri.pdf
-[2] https://www.arduino.cc/en/Guide/Troubleshooting#upload
-[3] https://medium.com/@ibrahimirdem/toprak-nem-sensörü-ve-arduino-a9ebe8ccc203
-[4] https://developer.android.com/studio/index.html
-[5] https://www.arduino.cc/en/main/software
-[6] https://www.mathworks.com/help/thingspeak/getting-started-with-thingspeak.html
-[7] https://www.mathworks.com/help/thingspeak/collect-data-in-a-new-channel.html
-[8] http://www.elektrobot.net/arduino-ile-esp8266-kullanimi-ve-web-server/
-[9] https://www.youtube.com/watch?v=Nk80L7zp5_4&t=164s
+- [1] akademikpersonel.kocaeli.edu.tr/bpekey/bildiri/bpekey05.10.2015_20.23.01bildiri.pdf
+
+- [2] https://www.arduino.cc/en/Guide/Troubleshooting#upload
+
+- [3] https://medium.com/@ibrahimirdem/toprak-nem-sensörü-ve-arduino-a9ebe8ccc203
+
+- [4] https://developer.android.com/studio/index.html
+
+- [5] https://www.arduino.cc/en/main/software
+
+- [6] https://www.mathworks.com/help/thingspeak/getting-started-with-thingspeak.html
+
+- [7] https://www.mathworks.com/help/thingspeak/collect-data-in-a-new-channel.html
+
+- [8] http://www.elektrobot.net/arduino-ile-esp8266-kullanimi-ve-web-server/
+
+- [9] https://www.youtube.com/watch?v=Nk80L7zp5_4&t=164s
+
 
