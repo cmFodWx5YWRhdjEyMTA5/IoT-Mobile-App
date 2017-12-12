@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
-#define WIFI_SSID "Laks.js"
-#define WIFI_PASSWORD "vakumvakumvakum"
-String apiKey = "YB0636AMO077W410";
+#define WIFI_SSID "YOUR_WIFI_ID"
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
+String apiKey = "YOUR_API_KEY";
 const char* server = "api.thingspeak.com";
 const int prob= A0;
 int measurement_Total;
