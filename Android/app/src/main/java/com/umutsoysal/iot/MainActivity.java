@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +27,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -49,17 +52,32 @@ public class MainActivity extends Activity {
         update=(TextView)findViewById(R.id.date);
         field=(TextView)findViewById(R.id.field);
         day=(TextView)findViewById(R.id.day);
-        yinele=(Button)findViewById(R.id.guncelle);
         mesaj=(TextView)findViewById(R.id.mesaj);
 
-        new GetData().execute();
 
-        yinele.setOnClickListener(new View.OnClickListener() {
+
+        final Handler handler = new Handler();
+        Timer timer = new Timer();
+        TimerTask doAsynchronousTask = new TimerTask() {
             @Override
-            public void onClick(View view) {
-                new GetData().execute();
+            public void run() {
+                handler.post(new Runnable() {
+                    public void run() {
+                        try {
+                            new GetData().execute();
+
+                        } catch (Exception e) {
+                            // TODO Auto-generated catch block
+                        }
+                    }
+                });
             }
-        });
+        };
+        timer.schedule(doAsynchronousTask, 0, 13000); //execute in every 50000 ms
+
+
+
+
 
 
 
