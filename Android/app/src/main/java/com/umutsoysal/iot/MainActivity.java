@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
     static JSONObject jObj = null;
     String created_at,entry_id,field1;
     String update_date,gun;
-    TextView update,field,day;
+    TextView update,field,day,mesaj;
     Button yinele;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,7 @@ public class MainActivity extends Activity {
         field=(TextView)findViewById(R.id.field);
         day=(TextView)findViewById(R.id.day);
         yinele=(Button)findViewById(R.id.guncelle);
+        mesaj=(TextView)findViewById(R.id.mesaj);
 
         new GetData().execute();
 
@@ -89,8 +90,32 @@ public class MainActivity extends Activity {
         {
             dialog.dismiss();
 
+
             update.setText(update_date);
-            field.setText(field1);
+            String[] dd=field1.split("r");
+            double nem=Double.parseDouble(dd[0].substring(0,dd[0].length()-1));
+
+
+            double yuzde=10.23;
+            double deger=nem/yuzde;
+            double deger2=100-deger;
+            field.setText("% "+String.valueOf(deger2).substring(0,5));
+
+            if(nem<=300)
+            {
+                mesaj.setText("Toprak ideal nem seviyesinin cok ustunde");
+            }
+            else if(nem > 300 && nem <= 450)
+            {
+                mesaj.setText("Toprak ideal nem seviyesinin ustunde");
+            }else if(nem > 450 && nem <= 700)
+            {
+                mesaj.setText("Toprak ideal nem seviyesinde");
+            }
+            else if(nem >700 && nem <= 1024)
+            {
+                mesaj.setText("Toprak ideal nem seviyesinin altinda ve sulanması gerekmektedir.");
+            }
             day.setText(gun);
 
         }
@@ -137,8 +162,24 @@ public class MainActivity extends Activity {
             if (Integer.parseInt(dat[1]) >= 0 && Integer.parseInt(dat[1]) <= 11 ) {
                 month = months[Integer.parseInt(dat[1])];
             }
-          update_date=dat[1]+" "+month+" "+dat[0].substring(1)+" ,"+dat2[0];
-            gun=dat2[1];
+            if(Integer.parseInt(dat[1])==12)
+            {
+                month="Aralık";
+            }
+          update_date=dat2[0]+" "+month+" ,"+dat[0].substring(1);
+            String[] x=dat2[1].split(":");
+            int saat=Integer.parseInt(x[0])+3;
+            if(saat>=24)
+            {
+                saat=saat-24;
+                if(saat<10)
+                {
+                    gun="0"+String.valueOf(saat)+":"+x[1];
+                }
+            }
+            else {
+                gun = String.valueOf(saat) + ":" + x[1];
+            }
         }
 
     }
